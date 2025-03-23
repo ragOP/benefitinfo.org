@@ -196,7 +196,7 @@ export default function Tsf() {
     });
   };
 
-  const [quiz, setQuiz] = useState("Are you over the age of 64?  ");
+  const [quiz, setQuiz] = useState("¿Tienes más de 64 años?");
   const [step, setStep] = useState("process");
   const [min, setMin] = useState(3);
   const [second, setSecond] = useState<any>(0);
@@ -267,10 +267,10 @@ export default function Tsf() {
 
   const handleQuizP = () => {
     topScroll("btn");
-    if (quiz === "Are you over the age of 64?  ") {
+    if (quiz === "¿Tienes más de 64 años?") {
       setYes("Yes")
       setNo("No")
-      setQuiz("2. Do you live in the United States?");
+      setQuiz("¿Actualmente estás inscrito en Medicare Parte A o Parte B?");
     } else {
       setStep("Reviewing Your Answers...");
      
@@ -303,9 +303,9 @@ export default function Tsf() {
   const handleQuizN = () => {
     topScroll("btn");
     if (quiz === "Are you over the age of 60?  ") {
-      setYes("Yes")
-      setNo("No")
-      setQuiz("2. Do you live in the United States?");
+      setYes("SÍ, TENGO 65 AÑOS O MÁS")
+      setNo("NO, TENGO 64 AÑOS O MENOS")
+      setQuiz("¿Actualmente estás inscrito en Medicare Parte A o Parte B?");
     } else {
       setStep("Reviewing Your Answers...");
     
