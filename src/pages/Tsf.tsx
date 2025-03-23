@@ -347,17 +347,17 @@ export default function Tsf() {
             <div className="main-descrition-5-5">
               <div className="main-des-title-6-7">
                 <b>
-               Seniors On Medicare Can Unlock Their Food Allowance Worth Up To $900!
+                ¡Los adultos mayores con Medicare pueden reclamar su tarjeta de asignación de alimentos con un valor de miles de dólares!
                 </b>
               </div>
               {/* <img className='topic-img-larger' src = {Headline} alt = "head"/> */}
               <img className="topic-img-middle-z" src={Head_bg} alt="head" />
               <div  style={{marginTop:'14px'}}className="main-des-5">
-Eligible Americans are taking advantage of this opportunity to secure their Food Allowance Card, which covers the cost of groceries, rent, bills, and other monthly expenses.
+              Los estadounidenses elegibles están aprovechando esta oportunidad para obtener su Tarjeta de Asignación de Alimentos, que cubre el costo de comestibles, renta, facturas y otros gastos mensuales.
 
               </div>
               <div className="main-des-5"  style={{marginTop:'-5px'}}>
-Shop at your favorite stores like Walmart, Target, CVS, and more with your allowance card! Simply answer the questions below to see if you’re eligible now!
+              Usa tu tarjeta de asignación en tus lugares favoritos como Walmart, Target, CVS y muchos más. ¡Responde las preguntas a continuación para verificar si calificas ahora!
               </div>
               {/* <div className='main-des-5' style = {{marginTop:"1rem"}}><b>Simplemente responda las siguientes preguntas:</b></div> */}
             </div>
