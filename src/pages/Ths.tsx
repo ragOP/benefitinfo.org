@@ -124,7 +124,7 @@ export default function Tsf() {
   //   fetchUserLocation();
   // }, []);
   useEffect(() => {
-    window.document.title = "Senior's Allowance Program 2024";
+    window.document.title = "Senior's Allowance Program 2025";
 
     axios
       .get(process.env.REACT_APP_PROXY + `/visits/8`)
@@ -339,7 +339,7 @@ export default function Tsf() {
     <div>
 {/*      <ToastContainer /> */}
       <div style={{marginBottom:'4px'}} className="top-sticky-blue-test2" id="top">
-      Senior's Allowance Program 2024
+      Senior's Allowance Program 2025
       </div>
       {step === "process" ? (
         <>
@@ -410,7 +410,7 @@ export default function Tsf() {
         </div>
         {/* <div className="terms2">Terms & Conditions | Privacy Policy</div> */}
         <div className="copyright">
-          Copyright © 2024 - All right reserved Daily America Savings.
+          Copyright © 2025 - All right reserved Daily America Savings.
         </div>
         {/* <p>{zipCode} </p> */}
       </div>
