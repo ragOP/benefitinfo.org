@@ -80,6 +80,7 @@ export default function Tsf() {
   
   useEffect(() => {
     const delayedEffect = setTimeout(() => {
+      // Create a function to handle the logic
       const showRandomToast = () => {
         const randomTime = 20000;
         const randomMessage =
@@ -172,7 +173,6 @@ export default function Tsf() {
   }, []);
 
   const handleCall = () => {
-    getButtonClick({ buttonId: 5 })
     axios.get(process.env.REACT_APP_PROXY + `/visits/8`).then(({ data }) => {
       const _id = data[0]._id;
       const _visits = data[0].visits;
@@ -196,7 +196,7 @@ export default function Tsf() {
     });
   };
 
-  const [quiz, setQuiz] = useState("Are you over the age of 64?  ");
+  const [quiz, setQuiz] = useState("¿Tienes más de 64 años?");
   const [step, setStep] = useState("process");
   const [min, setMin] = useState(3);
   const [second, setSecond] = useState<any>(0);
@@ -267,16 +267,14 @@ export default function Tsf() {
 
   const handleQuizP = () => {
     topScroll("btn");
-    if (quiz === "Are you over the age of 64?  ") {
+    if (quiz === "¿Tienes más de 64 años?") {
       setYes("Yes")
       setNo("No")
-      setQuiz("Are You Currently Enrolled in Medicare Part A or Part B?");
-        getButtonClick({ buttonId: 1 })
+      setQuiz("¿Actualmente estás inscrito en Medicare Parte A o Parte B?");
     } else {
       setStep("Reviewing Your Answers...");
      
       topScroll("top");
-       getButtonClick({ buttonId: 3 })
     }
 
     axios.get(process.env.REACT_APP_PROXY + `/visits/8`).then(({ data }) => {
@@ -302,176 +300,46 @@ export default function Tsf() {
     });
   };
 
-  const [rgbaTags, setRgbaTags] = useState(
-    (window as any)._rgba_tags || [] // Temporary assertion for _rgba_tags
-  );
-  
-  // Function to append the parameter to the URL
-  // Function to append the parameter to the URL
-  const appendToURL = (param: string, value: string) => {
-    let url = window.location.href;
-    const hashIndex = url.indexOf('#');
-    let hash = '';
-
-    // Check and save hash part of the URL
-    if (hashIndex !== -1) {
-      hash = url.substring(hashIndex);
-      url = url.substring(0, hashIndex);
-    }
-
-    const newParam = `${param}=${encodeURIComponent(value)}`;
-    if (url.includes('?')) {
-      if (url.includes(`${param}=`)) {
-        const regex = new RegExp(`${param}=[^&]*`);
-        url = url.replace(regex, newParam);
-      } else {
-        url += `&${newParam}`;
-      }
-    } else {
-      url += `?${newParam}`;
-    }
-
-    // Update the URL without reloading the page
-    window.history.pushState(null, '', url + hash);
-  };
-
-
   const handleQuizN = () => {
-    if (quiz === "Are you over the age of 64?  ") {
-      // Transition to the second question when "NO" is clicked on the first question
-      setQuiz("Are You Currently Enrolled in Medicare Part A or Part B?");
-      // Set the options for the second question (Yes and No)
-      setYes("Yes");
-      setNo("No");
-        getButtonClick({ buttonId: 2 })
-    } else if (quiz === "Are You Currently Enrolled in Medicare Part A or Part B?") {
-      // Logic for when the "NO" button is pressed on the second question
-      appendToURL('ab', 'no');
-      console.log('Before updating _rgba_tags:', window._rgba_tags);
-      // Scroll to the "NO" button section
-      window._rgba_tags[0] = {"ab":"no"}
-      window._rgba_tags.push({
-      "ab": "no"
-  });
-  console.log('After updating _rgba_tags:', window._rgba_tags);
-      // Update the _rgba_tags array
-      // const updatedTags = [...rgbaTags, { ab: 'no' }];
-      // setRgbaTags(updatedTags);
-      // (window as any)._rgba_tags = updatedTags;
-  
-      // Scroll to the "NO" button section
-      topScroll("btn");
-  
-      // Update quiz state for next question or review step
+    topScroll("btn");
+    if (quiz === "Are you over the age of 60?  ") {
+      setYes("SÍ, TENGO 65 AÑOS O MÁS")
+      setNo("NO, TENGO 64 AÑOS O MENOS")
+      setQuiz("¿Actualmente estás inscrito en Medicare Parte A o Parte B?");
+    } else {
       setStep("Reviewing Your Answers...");
+    
       topScroll("top");
-        getButtonClick({ buttonId: 4 })
-  
-      // Update visit data using Axios
-      axios.get(process.env.REACT_APP_PROXY + `/visits/8`).then(({ data }) => {
-        const _id = data[0]._id;
-        const _visits = data[0].visits;
-        const _views = data[0].views;
-        const _calls = data[0].calls;
-        const _positives = data[0].positives;
-        const _negatives = data[0].negatives;
-        const visits = {
-          visits: _visits,
-          views: _views,
-          calls: _calls,
-          positives: _positives,
-          negatives: _negatives + 1,  // Increment negative count
-        };
-        axios
-          .put(
-            process.env.REACT_APP_PROXY + `/visits/update-visits8/` + _id,
-            visits
-          )
-          .catch((err) => console.log(err));
-      });
-    }
-  };
- const websiteViewCount = async () => {
-    await fetch("https://anlyatical-dashboard.onrender.com/api/website", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "websiteId": 102,
-        "websiteName": "foodallowances.org/engmed-ths",
-      }),
-    });
-  }
-
-  ///'''''
-
-  const getButtonClick = async ({ buttonId }: { buttonId: number }) => {
-    await fetch("https://anlyatical-dashboard.onrender.com/api/button", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "websiteId": 102,
-        "buttonId": buttonId,
-      }),
-    });
-  }
-
-  useEffect(() => {
-    websiteViewCount()
-  }, [])
-
-
-  const handleSession = async () => {
-  
-    const generateSessionId = () => {
-      return 'session-' + Math.random().toString(36).substr(2, 9);
-    };
-
-    const sessionId = generateSessionId();
-    async function endSession() {
-      const response = await axios.post('https://anlyatical-dashboard.onrender.com/api/website', { websiteId: 102, sessionId });
-      console.log('Session ended. Duration:', response.data.duration, 'seconds');
     }
 
-    try {
-      // Start the session
-      await axios.post('https://anlyatical-dashboard.onrender.com/api/website', { websiteId:102, sessionId });
-      console.log('Session started');
-
-      // Record an interaction
-      await axios.post('https://anlyatical-dashboard.onrender.com/api/website', { websiteId:102, sessionId });
-      console.log('Interaction recorded');
-
-      // End the session after 5 seconds
-      window.addEventListener('beforeunload', endSession);
-
-      setTimeout(endSession, 5000);
-
-      return () => {
-        endSession();
-        window.removeEventListener('beforeunload', endSession);
+    axios.get(process.env.REACT_APP_PROXY + `/visits/8`).then(({ data }) => {
+      const _id = data[0]._id;
+      const _visits = data[0].visits;
+      const _views = data[0].views;
+      const _calls = data[0].calls;
+      const _positives = data[0].positives;
+      const _negatives = data[0].negatives;
+      const visits = {
+        visits: _visits,
+        views: _views,
+        calls: _calls,
+        positives: _positives,
+        negatives: _negatives + 1,
       };
-
-    } catch (error) {
-      console.error('Error:', error);
-    }
+      axios
+        .put(
+          process.env.REACT_APP_PROXY + `/visits/update-visits8/` + _id,
+          visits
+        )
+        .catch((err) => console.log(err));
+    });
   };
 
-  useEffect(() => {
-    handleSession();
-  }, []);
-  useEffect(()=>{
-    const url = window.location.href.split('?')[0]; // Remove query params from URL
-    window.history.replaceState(null, '', url);
-  },[])
   return (
     <div>
 {/*      <ToastContainer /> */}
       <div style={{marginBottom:'4px'}} className="top-sticky-blue-test2" id="top">
-      Senior's Allowance Program 2025
+      Senior's Allowance Program 2024
       </div>
       {step === "process" ? (
         <>
@@ -479,17 +347,17 @@ export default function Tsf() {
             <div className="main-descrition-5-5">
               <div className="main-des-title-6-7">
                 <b>
-Seniors On Medicare Can Claim Their Food Allowance Card Worth Thousands Of Dollars!
+                ¡Los adultos mayores con Medicare pueden reclamar su tarjeta de asignación de alimentos con un valor de miles de dólares!
                 </b>
               </div>
               {/* <img className='topic-img-larger' src = {Headline} alt = "head"/> */}
               <img className="topic-img-middle-z" src={Head_bg} alt="head" />
               <div  style={{marginTop:'14px'}}className="main-des-5">
-Eligible Americans are taking advantage of this opportunity to secure their Food Allowance Card, which covers the cost of groceries, rent, bills, and other monthly expenses.
+              Los estadounidenses elegibles están aprovechando esta oportunidad para obtener su Tarjeta de Asignación de Alimentos, que cubre el costo de comestibles, renta, facturas y otros gastos mensuales.
 
               </div>
               <div className="main-des-5"  style={{marginTop:'-5px'}}>
-Use your allowance card at your favorite places like Walmart, Target, CVS, and many more. Answer the questions below to check your eligibility now!
+              Usa tu tarjeta de asignación en tus lugares favoritos como Walmart, Target, CVS y muchos más. ¡Responde las preguntas a continuación para verificar si calificas ahora!
               </div>
               {/* <div className='main-des-5' style = {{marginTop:"1rem"}}><b>Simplemente responda las siguientes preguntas:</b></div> */}
             </div>
@@ -520,7 +388,7 @@ Use your allowance card at your favorite places like Walmart, Target, CVS, and m
           </div>
           <div className="spots-count">Spots remaining: 4</div>
           <div className="tap-direction">👇 TAP BELOW TO CALL 👇</div>
-          <a href="tel:+16142658802">             <div className="call-btn" onClick={handleCall}>            CALL (323) 689-7861           </div>           </a>
+          <a href="tel:+13236897861">             <div className="call-btn" onClick={handleCall}>            CALL (323) 689-7861           </div>           </a>
           <div className="sub-description">
           Make sure to ask for medicare benefit for your area in order to receive the <b> Highest Possible Allowance.</b>
           </div>
@@ -536,23 +404,15 @@ Use your allowance card at your favorite places like Walmart, Target, CVS, and m
           </div>
         </div>
       )}
-       <div className="footer2">
-      
-        <div className="terms2">
-
-        <Link to="/terms-and-conditions">Terms & Conditions</Link> | 
-        <Link to="/privacy-policy">Privacy Policy</Link>
+      <div className="footer2">
+      <div className="terms2">
+          <Link to="/terms-and-conditions">Terms & Conditions</Link> | 
+          <Link to="/privacy-policy">Privacy Policy</Link>
         </div>
-        <div>
-        
-        <hr/>
-        </div>
+        {/* <div className="terms2">Terms & Conditions | Privacy Policy</div> */}
         <div className="copyright">
-          
-        
+          Copyright © 2024 - All right reserved Daily America Savings.
         </div>
-
-{/* <p>G2 Licensed Agent : Gregory K. Teipelz</p> */}
         {/* <p>{zipCode} </p> */}
       </div>
 {/*       <ToastContainer
