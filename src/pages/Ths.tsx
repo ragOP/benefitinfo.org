@@ -200,8 +200,8 @@ export default function Tsf() {
   const [step, setStep] = useState("process");
   const [min, setMin] = useState(3);
   const [second, setSecond] = useState<any>(0);
-  const [yes,setYes]=useState("YES, I'M 65 OR OLDER")
-  const [no,setNo]=useState("NO, I'M 64 OR YOUNGER")
+  const [yes,setYes]=useState("SÍ, TENGO 65 AÑOS O MÁS")
+  const [no,setNo]=useState("NO, TENGO 64 AÑOS O MENOS")
   
 
   const stepProcess = () => {
