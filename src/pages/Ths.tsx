@@ -268,7 +268,7 @@ export default function Tsf() {
   const handleQuizP = () => {
     topScroll("btn");
     if (quiz === "¿Tienes más de 64 años?") {
-      setYes("Yes")
+      setYes("Sí")
       setNo("No")
       setQuiz("¿Actualmente estás inscrito en Medicare Parte A o Parte B?");
     } else {
