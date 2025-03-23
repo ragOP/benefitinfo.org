@@ -389,13 +389,12 @@ export default function Tsf() {
           <div className="spots-count">Lugares disponibles: 4</div>
           <div className="tap-direction">👇 TOCA ABAJO PARA LLAMAR👇</div>
           <a href="tel:+13236897861">             <div className="call-btn" onClick={handleCall}>            CALL (323) 689-7861           </div>           </a>
-          <div className="sub-description">
+          {/* <div className="sub-description">
           Make sure to ask for medicare benefit for your area in order to receive the <b> Highest Possible Allowance.</b>
-          </div>
-          <div className="sub-title">We Have Reserved Your Spot</div>
+          </div> */}
+          <div className="sub-title">Hemos Reservado Tu Lugar</div>
           <div className="sub-description">
-            Due to high call volume, your official agent is waiting for only{" "}
-            <b>3 minutes</b>, then your spot will not be reserved.
+          Debido al alto volumen de llamadas, tu agente autorizado solo podrá esperar 3 minutos. Después de eso, tu lugar ya no estará reservado.
           </div>
           <div className="timer">
             <div className="timer-cell">{min}</div>
