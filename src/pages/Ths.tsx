@@ -388,7 +388,7 @@ export default function Tsf() {
           </div>
           <div className="spots-count">Lugares disponibles: 4</div>
           <div className="tap-direction">👇 TOCA ABAJO PARA LLAMAR👇</div>
-          <a href="tel:+13236897861">             <div className="call-btn" onClick={handleCall}>            CALL (323) 689-7861           </div>           </a>
+          <a href="tel:+18666570134">             <div className="call-btn" onClick={handleCall}>            CALL (186) 657-0134           </div>           </a>
           {/* <div className="sub-description">
           Make sure to ask for medicare benefit for your area in order to receive the <b> Highest Possible Allowance.</b>
           </div> */}
